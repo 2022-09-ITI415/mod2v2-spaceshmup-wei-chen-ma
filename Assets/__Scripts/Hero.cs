@@ -73,6 +73,12 @@ public class Hero : MonoBehaviour {
     {
         Transform rootT = other.gameObject.transform.root;
         GameObject go = rootT.gameObject;
+        if (other.tag != "ProjectileEnemy"){
+            
+        }
+        else
+            go = other.gameObject;
+            
         print("Triggered: " + go.name);
 
         // Make sure it's not the same triggering go as last time
@@ -84,7 +90,13 @@ public class Hero : MonoBehaviour {
 
         if(go.tag == "Enemy")
         {
+            Debug.Log(go.name);
             shieldLevel--;
+            Destroy(go);
+        }
+        else if (go.tag == "ProjectileEnemy")
+        {
+            shieldLevel --;
             Destroy(go);
         }
         else if (go.tag == "PowerUp")
